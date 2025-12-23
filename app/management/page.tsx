@@ -43,7 +43,7 @@ export default function ManagementPage() {
 
   const handleAddUser = async (alias: string, name: string) => {
     if (!shiftData) return;
-    
+
     const daysInMonth = new Date(year, month, 0).getDate();
     const newDays = [];
     for (let d = 1; d <= daysInMonth; d++) {
@@ -54,7 +54,7 @@ export default function ManagementPage() {
 
     const newUser = { alias, name, days: newDays };
     const newData = { ...shiftData, people: [...shiftData.people, newUser] };
-    
+
     // Optimistic update
     setShiftData(newData);
 
@@ -62,11 +62,11 @@ export default function ManagementPage() {
       const res = await fetch('/api/people', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          year: shiftData.year, 
-          month: shiftData.month, 
-          alias, 
-          name 
+        body: JSON.stringify({
+          year: shiftData.year,
+          month: shiftData.month,
+          alias,
+          name
         }),
       });
 
@@ -75,12 +75,48 @@ export default function ManagementPage() {
       } else {
         const errorData = await res.json();
         showNotification(errorData.error || 'Failed to add user', 'error');
-        // Revert optimistic update if needed, but for now we'll just show error
-        // Ideally we should reload data here
         fetchShiftData(year, month);
       }
     } catch (err) {
       showNotification('Network error while adding user', 'error');
+      fetchShiftData(year, month);
+    }
+  };
+
+  const handleDeleteUser = async (alias: string) => {
+    if (!shiftData) return;
+
+    // Optimistic update
+    const newData = {
+      ...shiftData,
+      people: shiftData.people.filter(p => p.alias !== alias),
+      tag_arrangement: shiftData.tag_arrangement.map(g => ({
+        ...g,
+        member: g.member.filter(m => m.alias !== alias)
+      }))
+    };
+    setShiftData(newData);
+
+    try {
+      const res = await fetch('/api/people', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          year: shiftData.year,
+          month: shiftData.month,
+          alias
+        }),
+      });
+
+      if (res.ok) {
+        showNotification(`User deleted successfully`, 'success');
+      } else {
+        const errorData = await res.json();
+        showNotification(errorData.error || 'Failed to delete user', 'error');
+        fetchShiftData(year, month);
+      }
+    } catch (err) {
+      showNotification('Network error while deleting user', 'error');
       fetchShiftData(year, month);
     }
   };
@@ -140,6 +176,7 @@ export default function ManagementPage() {
         <PeopleManager
           data={shiftData}
           onAddUser={handleAddUser}
+          onDeleteUser={handleDeleteUser}
           onUpdateGroups={handleUpdateGroups}
         />
       )}

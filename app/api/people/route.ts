@@ -82,3 +82,50 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ success: true });
 }
+
+export async function DELETE(request: NextRequest) {
+  const body = await request.json();
+  const { year, month, alias } = body;
+
+  if (!year || !month || !alias) {
+    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  }
+
+  const data = await getShiftData(year, month);
+  if (!data) {
+    return NextResponse.json({ error: 'Data not found' }, { status: 404 });
+  }
+
+  // Check if person exists
+  if (!data.people.some(p => p.alias === alias)) {
+    return NextResponse.json({ error: 'Person not found' }, { status: 404 });
+  }
+
+  // Remove from people array
+  data.people = data.people.filter(p => p.alias !== alias);
+
+  // Remove from all groups
+  for (const group of data.tag_arrangement) {
+    group.member = group.member.filter(m => m.alias !== alias);
+  }
+
+  await saveShiftData(year, month, data);
+
+  // Propagate to subsequent months
+  const subsequentFiles = await getSubsequentShiftFiles(year, month);
+  for (const file of subsequentFiles) {
+    const subData = file.data;
+
+    // Remove from people
+    subData.people = subData.people.filter(p => p.alias !== alias);
+
+    // Remove from all groups
+    for (const group of subData.tag_arrangement) {
+      group.member = group.member.filter(m => m.alias !== alias);
+    }
+
+    await saveShiftData(file.year, file.month, subData);
+  }
+
+  return NextResponse.json({ success: true });
+}
