@@ -1,0 +1,1941 @@
+{
+  "lockdate": [
+    11,
+    11,
+    12,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "year": 2025,
+  "month": 12,
+  "pod": "Azure_App_Service_POD_APAC",
+  "people": [
+    {
+      "alias": "anikshen",
+      "name": "Anik Shen ",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "AL"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "AL"
+        }
+      ]
+    },
+    {
+      "alias": "boqwang",
+      "name": "Boqian Wang ",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "AL"
+        },
+        {
+          "day": 5,
+          "workType": "AL"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "AL"
+        },
+        {
+          "day": 12,
+          "workType": "AL"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "AL"
+        },
+        {
+          "day": 16,
+          "workType": "AL"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "AL"
+        },
+        {
+          "day": 23,
+          "workType": "AL"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "HAAL"
+        },
+        {
+          "day": 30,
+          "workType": "AL"
+        },
+        {
+          "day": 31,
+          "workType": "AL"
+        }
+      ]
+    },
+    {
+      "alias": "xinzhen",
+      "name": "Dennis Zheng ",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "HAAL"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "HAAL"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "AL"
+        },
+        {
+          "day": 19,
+          "workType": "AL"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "AL"
+        },
+        {
+          "day": 23,
+          "workType": "AL"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "lifan",
+      "name": "Liang Fang ",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "suya",
+      "name": "Selina Sun ",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "HAAL"
+        },
+        {
+          "day": 5,
+          "workType": "AL"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "AL"
+        },
+        {
+          "day": 12,
+          "workType": "AL"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "AL"
+        },
+        {
+          "day": 19,
+          "workType": "AL"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "AL"
+        },
+        {
+          "day": 26,
+          "workType": "AL"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "AL"
+        },
+        {
+          "day": 30,
+          "workType": "AL"
+        },
+        {
+          "day": 31,
+          "workType": "AL"
+        }
+      ]
+    },
+    {
+      "alias": "wanjing",
+      "name": "Jing Wang",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "AL"
+        },
+        {
+          "day": 2,
+          "workType": "AL"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "HAAL"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "jianalu",
+      "name": "Jery Lu",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "AL"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "yuncai",
+      "name": "Calvin Cai",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "AL"
+        },
+        {
+          "day": 9,
+          "workType": "AL"
+        },
+        {
+          "day": 10,
+          "workType": "AL"
+        },
+        {
+          "day": 11,
+          "workType": "AL"
+        },
+        {
+          "day": 12,
+          "workType": "AL"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "AL"
+        },
+        {
+          "day": 23,
+          "workType": "AL"
+        },
+        {
+          "day": 24,
+          "workType": "AL"
+        },
+        {
+          "day": 25,
+          "workType": "AL"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "ruiwzhan",
+      "name": "Raven Zhang",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "TFL"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "menxia",
+      "name": "Victoria Xia",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "SL"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "AL"
+        },
+        {
+          "day": 23,
+          "workType": "AL"
+        },
+        {
+          "day": 24,
+          "workType": "AL"
+        },
+        {
+          "day": 25,
+          "workType": "AL"
+        },
+        {
+          "day": 26,
+          "workType": "AL"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "fapeng",
+      "name": "Amy Peng",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "AL"
+        },
+        {
+          "day": 2,
+          "workType": "AL"
+        },
+        {
+          "day": 3,
+          "workType": "AL"
+        },
+        {
+          "day": 4,
+          "workType": "AL"
+        },
+        {
+          "day": 5,
+          "workType": "AL"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "AL"
+        },
+        {
+          "day": 23,
+          "workType": "AL"
+        },
+        {
+          "day": 24,
+          "workType": "AL"
+        },
+        {
+          "day": 25,
+          "workType": "AL"
+        },
+        {
+          "day": 26,
+          "workType": "AL"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "AL"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "yuaf",
+      "name": "Yuanchang Feng",
+      "role": "FTE",
+      "principle": "TA",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "W"
+        },
+        {
+          "day": 9,
+          "workType": "W"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    },
+    {
+      "alias": "yanden",
+      "name": "Yanbo Deng",
+      "role": "FTE",
+      "principle": "None",
+      "days": [
+        {
+          "day": 1,
+          "workType": "W"
+        },
+        {
+          "day": 2,
+          "workType": "W"
+        },
+        {
+          "day": 3,
+          "workType": "W"
+        },
+        {
+          "day": 4,
+          "workType": "W"
+        },
+        {
+          "day": 5,
+          "workType": "W"
+        },
+        {
+          "day": 6,
+          "workType": "WD"
+        },
+        {
+          "day": 7,
+          "workType": "WD"
+        },
+        {
+          "day": 8,
+          "workType": "AL"
+        },
+        {
+          "day": 9,
+          "workType": "AL"
+        },
+        {
+          "day": 10,
+          "workType": "W"
+        },
+        {
+          "day": 11,
+          "workType": "W"
+        },
+        {
+          "day": 12,
+          "workType": "W"
+        },
+        {
+          "day": 13,
+          "workType": "WD"
+        },
+        {
+          "day": 14,
+          "workType": "WD"
+        },
+        {
+          "day": 15,
+          "workType": "W"
+        },
+        {
+          "day": 16,
+          "workType": "W"
+        },
+        {
+          "day": 17,
+          "workType": "W"
+        },
+        {
+          "day": 18,
+          "workType": "W"
+        },
+        {
+          "day": 19,
+          "workType": "W"
+        },
+        {
+          "day": 20,
+          "workType": "WD"
+        },
+        {
+          "day": 21,
+          "workType": "WD"
+        },
+        {
+          "day": 22,
+          "workType": "W"
+        },
+        {
+          "day": 23,
+          "workType": "W"
+        },
+        {
+          "day": 24,
+          "workType": "W"
+        },
+        {
+          "day": 25,
+          "workType": "W"
+        },
+        {
+          "day": 26,
+          "workType": "W"
+        },
+        {
+          "day": 27,
+          "workType": "WD"
+        },
+        {
+          "day": 28,
+          "workType": "WD"
+        },
+        {
+          "day": 29,
+          "workType": "W"
+        },
+        {
+          "day": 30,
+          "workType": "W"
+        },
+        {
+          "day": 31,
+          "workType": "W"
+        }
+      ]
+    }
+  ],
+  "tag_arrangement": [
+    {
+      "member": [
+        {
+          "alias": "suya",
+          "name": "Selina Sun "
+        },
+        {
+          "alias": "wanjing",
+          "name": "Jing Wang"
+        },
+        {
+          "alias": "ruiwzhan",
+          "name": "Raven Zhang"
+        },
+        {
+          "alias": "yuncai",
+          "name": "Calvin Cai"
+        },
+        {
+          "alias": "menxia",
+          "name": "Victoria Xia"
+        },
+        {
+          "alias": "fapeng",
+          "name": "Amy Peng"
+        },
+        {
+          "alias": "boqwang",
+          "name": "Boqian Wang "
+        },
+        {
+          "alias": "xinzhen",
+          "name": "Dennis Zheng "
+        },
+        {
+          "alias": "lifan",
+          "name": "Liang Fang "
+        },
+        {
+          "alias": "jianalu",
+          "name": "Jery Lu"
+        },
+        {
+          "name": "Anik Shen ",
+          "alias": "anikshen"
+        },
+        {
+          "name": "Yuanchang Feng",
+          "alias": "yuaf"
+        },
+        {
+          "name": "Yanbo Deng",
+          "alias": "yanden"
+        }
+      ],
+      "full_name": "Default"
+    },
+    {
+      "member": [
+        {
+          "alias": "suya",
+          "name": "Selina Sun "
+        },
+        {
+          "alias": "wanjing",
+          "name": "Jing Wang"
+        },
+        {
+          "alias": "ruiwzhan",
+          "name": "Raven Zhang"
+        },
+        {
+          "alias": "yuncai",
+          "name": "Calvin Cai"
+        },
+        {
+          "alias": "menxia",
+          "name": "Victoria Xia"
+        },
+        {
+          "alias": "fapeng",
+          "name": "Amy Peng"
+        },
+        {
+          "alias": "boqwang",
+          "name": "Boqian Wang "
+        },
+        {
+          "alias": "xinzhen",
+          "name": "Dennis Zheng "
+        },
+        {
+          "alias": "lifan",
+          "name": "Liang Fang "
+        },
+        {
+          "alias": "jianalu",
+          "name": "Jery Lu"
+        }
+      ],
+      "full_name": "VDM"
+    },
+    {
+      "member": [
+        {
+          "alias": "suya",
+          "name": "Selina Sun "
+        },
+        {
+          "alias": "ruiwzhan",
+          "name": "Raven Zhang"
+        },
+        {
+          "alias": "yuncai",
+          "name": "Calvin Cai"
+        },
+        {
+          "alias": "jianalu",
+          "name": "Jery Lu"
+        },
+        {
+          "alias": "fapeng",
+          "name": "Amy Peng"
+        },
+        {
+          "alias": "anikshen",
+          "name": "Anik Shen "
+        },
+        {
+          "alias": "boqwang",
+          "name": "Boqian Wang "
+        }
+      ],
+      "full_name": "Config"
+    },
+    {
+      "member": [
+        {
+          "alias": "ruiwzhan",
+          "name": "Raven Zhang"
+        },
+        {
+          "alias": "menxia",
+          "name": "Victoria Xia"
+        },
+        {
+          "alias": "lifan",
+          "name": "Liang Fang "
+        },
+        {
+          "alias": "fapeng",
+          "name": "Amy Peng"
+        },
+        {
+          "alias": "xinzhen",
+          "name": "Dennis Zheng "
+        },
+        {
+          "alias": "yuncai",
+          "name": "Calvin Cai"
+        }
+      ],
+      "full_name": "Dev"
+    },
+    {
+      "member": [
+        {
+          "alias": "wanjing",
+          "name": "Jing Wang"
+        },
+        {
+          "alias": "jianalu",
+          "name": "Jery Lu"
+        },
+        {
+          "alias": "suya",
+          "name": "Selina Sun "
+        },
+        {
+          "alias": "yuncai",
+          "name": "Calvin Cai"
+        },
+        {
+          "alias": "menxia",
+          "name": "Victoria Xia"
+        },
+        {
+          "alias": "ruiwzhan",
+          "name": "Raven Zhang"
+        }
+      ],
+      "full_name": "OSS"
+    },
+    {
+      "member": [
+        {
+          "alias": "suya",
+          "name": "Selina Sun "
+        },
+        {
+          "alias": "menxia",
+          "name": "Victoria Xia"
+        }
+      ],
+      "full_name": "Perf"
+    }
+  ]
+}

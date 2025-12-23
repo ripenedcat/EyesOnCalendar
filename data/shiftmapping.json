@@ -1,0 +1,94 @@
+{
+  "dayTypes": {
+    "W": {
+      "tag": "",
+      "color": "green",
+      "content": "Work",
+      "isOnDuty": 1
+    },
+    "MS": {
+      "tag": "MS",
+      "color": "lime",
+      "content": "Morning Shift",
+      "isOnDuty": 1
+    },
+    "NS": {
+      "tag": "NS",
+      "color": "emerald",
+      "content": "Night Shift",
+      "isOnDuty": 1
+    },
+    "T": {
+      "tag": "T",
+      "color": "blue",
+      "content": "Training",
+      "isOnDuty": 0
+    },
+    "AL": {
+      "tag": "AL",
+      "color": "fuchsia",
+      "content": "Annual Leave",
+      "isOnDuty": 0
+    },
+    "HMAL": {
+      "tag": "H(M)",
+      "color": "pink",
+      "content": "Morning AL",
+      "isOnDuty": 0.5
+    },
+    "HAAL": {
+      "tag": "H(A)",
+      "color": "rose",
+      "content": "Afternoon AL",
+      "isOnDuty": 0.5
+    },
+    "SL": {
+      "tag": "SL",
+      "color": "yellow",
+      "content": "Sick Leave",
+      "isOnDuty": 0
+    },
+    "HMSL": {
+      "tag": "H(M)",
+      "color": "amber",
+      "content": "Morning SL",
+      "isOnDuty": 0.5
+    },
+    "HASL": {
+      "tag": "H(A)",
+      "color": "orange",
+      "content": "Afternoon SL",
+      "isOnDuty": 0.5
+    },
+    "PO": {
+      "tag": "PO",
+      "color": "cyan",
+      "content": "Holiday OnDuty",
+      "isOnDuty": 1
+    },
+    "PM": {
+      "tag": "PM",
+      "color": "indigo",
+      "content": "Holiday MS",
+      "isOnDuty": 1
+    },
+    "PH": {
+      "tag": "PH",
+      "color": "violet",
+      "content": "Public Holiday",
+      "isOnDuty": 0
+    },
+    "WD": {
+      "tag": "WD",
+      "color": "red",
+      "content": "Weekend",
+      "isOnDuty": 0
+    },
+    "TFL": {
+      "tag": "TFL",
+      "color": "red",
+      "content": "Time for learning",
+      "isOnDuty": 0
+    }
+  }
+}

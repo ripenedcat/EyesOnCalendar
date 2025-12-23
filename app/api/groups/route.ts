@@ -1,0 +1,98 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { getShiftData, saveShiftData, getSubsequentShiftFiles } from '@/lib/data';
+
+export async function PUT(request: NextRequest) {
+  const body = await request.json();
+  const { year, month, tag_arrangement } = body;
+
+  if (!year || !month || !tag_arrangement) {
+    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+  }
+
+  const data = await getShiftData(year, month);
+  if (!data) {
+    return NextResponse.json({ error: 'Data not found' }, { status: 404 });
+  }
+
+  data.tag_arrangement = tag_arrangement;
+  await saveShiftData(year, month, data);
+
+  // Propagate to subsequent months
+  const subsequentFiles = await getSubsequentShiftFiles(year, month);
+  
+  // Create a map of alias -> groupName from the new arrangement
+  const aliasToGroupMap = new Map<string, string>();
+  for (const group of tag_arrangement) {
+      for (const member of group.member) {
+          aliasToGroupMap.set(member.alias, group.full_name);
+      }
+  }
+
+  for (const file of subsequentFiles) {
+      const subData = file.data;
+      let changed = false;
+
+      // 1. Ensure all groups exist in subData
+      const newGroupNames = new Set(tag_arrangement.map((g: any) => g.full_name));
+      
+      // Add missing groups
+      for (const groupName of Array.from(newGroupNames) as string[]) {
+          if (!subData.tag_arrangement.find(g => g.full_name === groupName)) {
+              subData.tag_arrangement.push({ full_name: groupName, member: [] });
+              changed = true;
+          }
+      }
+
+      // 2. Move people
+      for (const [alias, targetGroupName] of aliasToGroupMap.entries()) {
+          // Find which group this person is currently in within subData
+          let currentGroupIndex = -1;
+          let currentMemberIndex = -1;
+
+          for (let i = 0; i < subData.tag_arrangement.length; i++) {
+              const idx = subData.tag_arrangement[i].member.findIndex(m => m.alias === alias);
+              if (idx !== -1) {
+                  currentGroupIndex = i;
+                  currentMemberIndex = idx;
+                  break;
+              }
+          }
+
+          // If person found in subData
+          if (currentGroupIndex !== -1) {
+              const currentGroup = subData.tag_arrangement[currentGroupIndex];
+              
+              // If they are in the wrong group
+              if (currentGroup.full_name !== targetGroupName) {
+                  // Remove from old group
+                  const member = currentGroup.member[currentMemberIndex];
+                  currentGroup.member.splice(currentMemberIndex, 1);
+                  
+                  // Add to new group
+                  const targetGroup = subData.tag_arrangement.find(g => g.full_name === targetGroupName);
+                  if (targetGroup) {
+                      targetGroup.member.push(member);
+                      changed = true;
+                  }
+              }
+          } else {
+              // Person exists in subData.people but not in any group?
+              const personInSub = subData.people.find(p => p.alias === alias);
+              if (personInSub) {
+                  // Add to target group
+                  const targetGroup = subData.tag_arrangement.find(g => g.full_name === targetGroupName);
+                  if (targetGroup) {
+                      targetGroup.member.push({ alias: personInSub.alias, name: personInSub.name });
+                      changed = true;
+                  }
+              }
+          }
+      }
+      
+      if (changed) {
+          await saveShiftData(file.year, file.month, subData);
+      }
+  }
+
+  return NextResponse.json({ success: true });
+}
