@@ -1,61 +1,97 @@
-import fs from 'fs/promises';
-import path from 'path';
+import { query } from './db';
 import { ShiftData, ShiftMapping, Person, Day } from '@/types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-
 export async function getShiftMapping(): Promise<ShiftMapping> {
-  const filePath = path.join(DATA_DIR, 'shiftmapping.json');
-  const data = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(data);
+  const rows = await query<{ day_types: any }>(
+    'SELECT day_types FROM shift_mapping ORDER BY id DESC LIMIT 1'
+  );
+
+  if (rows.length === 0) {
+    throw new Error('Shift mapping not found in database');
+  }
+
+  return { dayTypes: rows[0].day_types };
 }
 
 export async function getShiftData(year: number, month: number): Promise<ShiftData | null> {
-  const fileName = `${year}${month.toString().padStart(2, '0')}shift.json`;
-  const filePath = path.join(DATA_DIR, fileName);
-  try {
-    const dataStr = await fs.readFile(filePath, 'utf-8');
-    const data: ShiftData = JSON.parse(dataStr);
+  const rows = await query<{
+    year: number;
+    month: number;
+    pod: string;
+    lockdate: number[];
+    people: any;
+    tag_arrangement: any;
+  }>(
+    'SELECT year, month, pod, lockdate, people, tag_arrangement FROM shift_data WHERE year = $1 AND month = $2',
+    [year, month]
+  );
 
-    if (!data.tag_arrangement) {
-      data.tag_arrangement = [];
-    }
-
-    // Ensure Default group has all members
-    if (data.tag_arrangement) {
-      let defaultGroup = data.tag_arrangement.find(g => g.full_name === 'Default');
-      
-      if (!defaultGroup) {
-        defaultGroup = {
-          full_name: 'Default',
-          member: []
-        };
-        data.tag_arrangement.unshift(defaultGroup);
-      }
-
-      const existingMemberAliases = new Set(defaultGroup.member.map(m => m.alias));
-      
-      data.people.forEach(person => {
-        if (!existingMemberAliases.has(person.alias)) {
-          defaultGroup!.member.push({
-            name: person.name,
-            alias: person.alias
-          });
-          existingMemberAliases.add(person.alias);
-        }
-      });
-    }
-
-    return data;
-  } catch (error) {
+  if (rows.length === 0) {
     return null;
   }
+
+  const data: ShiftData = {
+    year: rows[0].year,
+    month: rows[0].month,
+    pod: rows[0].pod,
+    lockdate: rows[0].lockdate || [],
+    people: rows[0].people || [],
+    tag_arrangement: rows[0].tag_arrangement || []
+  };
+
+  // Ensure tag_arrangement is initialized
+  if (!data.tag_arrangement) {
+    data.tag_arrangement = [];
+  }
+
+  // Ensure Default group has all members
+  if (data.tag_arrangement) {
+    let defaultGroup = data.tag_arrangement.find(g => g.full_name === 'Default');
+
+    if (!defaultGroup) {
+      defaultGroup = {
+        full_name: 'Default',
+        member: []
+      };
+      data.tag_arrangement.unshift(defaultGroup);
+    }
+
+    const existingMemberAliases = new Set(defaultGroup.member.map(m => m.alias));
+
+    data.people.forEach(person => {
+      if (!existingMemberAliases.has(person.alias)) {
+        defaultGroup!.member.push({
+          name: person.name,
+          alias: person.alias
+        });
+        existingMemberAliases.add(person.alias);
+      }
+    });
+  }
+
+  return data;
 }
 
 export async function saveShiftData(year: number, month: number, data: ShiftData): Promise<void> {
-  const fileName = `${year}${month.toString().padStart(2, '0')}shift.json`;
-  const filePath = path.join(DATA_DIR, fileName);
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+  await query(
+    `INSERT INTO shift_data (year, month, pod, lockdate, people, tag_arrangement, updated_at)
+     VALUES ($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)
+     ON CONFLICT (year, month)
+     DO UPDATE SET
+       pod = EXCLUDED.pod,
+       lockdate = EXCLUDED.lockdate,
+       people = EXCLUDED.people,
+       tag_arrangement = EXCLUDED.tag_arrangement,
+       updated_at = CURRENT_TIMESTAMP`,
+    [
+      year,
+      month,
+      data.pod,
+      data.lockdate || [],
+      JSON.stringify(data.people),
+      JSON.stringify(data.tag_arrangement)
+    ]
+  );
 }
 
 export async function createShiftData(year: number, month: number): Promise<ShiftData> {
@@ -103,21 +139,34 @@ export async function createShiftData(year: number, month: number): Promise<Shif
 }
 
 export async function getSubsequentShiftFiles(startYear: number, startMonth: number): Promise<{ year: number; month: number; data: ShiftData }[]> {
-  const files = await fs.readdir(DATA_DIR);
-  const shiftFiles = files.filter(f => f.match(/^\d{6}shift\.json$/));
-  
+  const rows = await query<{
+    year: number;
+    month: number;
+    pod: string;
+    lockdate: number[];
+    people: any;
+    tag_arrangement: any;
+  }>(
+    `SELECT year, month, pod, lockdate, people, tag_arrangement
+     FROM shift_data
+     WHERE (year > $1) OR (year = $1 AND month > $2)
+     ORDER BY year, month`,
+    [startYear, startMonth]
+  );
+
   const subsequentFiles: { year: number; month: number; data: ShiftData }[] = [];
-  
-  for (const file of shiftFiles) {
-    const year = parseInt(file.substring(0, 4));
-    const month = parseInt(file.substring(4, 6));
-    
-    if (year > startYear || (year === startYear && month > startMonth)) {
-       const data = await getShiftData(year, month);
-       if (data) {
-           subsequentFiles.push({ year, month, data });
-       }
-    }
+
+  for (const row of rows) {
+    const data: ShiftData = {
+      year: row.year,
+      month: row.month,
+      pod: row.pod,
+      lockdate: row.lockdate || [],
+      people: row.people || [],
+      tag_arrangement: row.tag_arrangement || []
+    };
+    subsequentFiles.push({ year: row.year, month: row.month, data });
   }
+
   return subsequentFiles;
 }
