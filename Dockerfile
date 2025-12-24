@@ -39,7 +39,6 @@ COPY --from=builder /app/.next/static ./.next/static
 
 # Copy migration scripts
 COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/data ./data
 
 USER nextjs
 
