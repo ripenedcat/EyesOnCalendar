@@ -38,7 +38,14 @@ export async function PUT(request: NextRequest) {
           }
       }
 
-      // 2. Move people
+      // 2. Remove groups that don't exist in global config
+      const groupsToKeep = subData.tag_arrangement.filter(g => newGroupNames.has(g.full_name));
+      if (groupsToKeep.length !== subData.tag_arrangement.length) {
+          subData.tag_arrangement = groupsToKeep;
+          changed = true;
+      }
+
+      // 3. Move people
       for (const [alias, targetGroupName] of aliasToGroupMap.entries()) {
           // Find which group this person is currently in within subData
           let currentGroupIndex = -1;

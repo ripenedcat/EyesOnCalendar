@@ -210,9 +210,10 @@ export default function PeopleManager({ data, onAddUser, onDeleteUser, onUpdateG
                 onChange={e => setSelectedGroupIndex(Number(e.target.value))}
                 className="border p-2 rounded flex-1"
               >
-                {data.tag_arrangement.map((g, i) => (
-                  <option key={i} value={i}>{g.full_name}</option>
-                ))}
+                {data.tag_arrangement.filter(g => g.full_name !== 'All').map((g, i) => {
+                  const originalIndex = data.tag_arrangement.findIndex(group => group.full_name === g.full_name);
+                  return <option key={i} value={originalIndex}>{g.full_name}</option>;
+                })}
               </select>
             </div>
             <button onClick={handleAddToGroup} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 w-full">
