@@ -1,25 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getShiftData, saveShiftData, getSubsequentShiftFiles } from '@/lib/data';
+import { saveShiftData, getSubsequentShiftFiles, saveTagGroups } from '@/lib/data';
 
 export async function PUT(request: NextRequest) {
   const body = await request.json();
-  const { year, month, tag_arrangement } = body;
+  const { tag_arrangement } = body;
 
-  if (!year || !month || !tag_arrangement) {
+  if (!tag_arrangement) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
   }
 
-  const data = await getShiftData(year, month);
-  if (!data) {
-    return NextResponse.json({ error: 'Data not found' }, { status: 404 });
-  }
+  // Save to global tag groups
+  await saveTagGroups(tag_arrangement);
 
-  data.tag_arrangement = tag_arrangement;
-  await saveShiftData(year, month, data);
+  // Propagate to all existing months
+  const subsequentFiles = await getSubsequentShiftFiles(0, 0); // Get all files
 
-  // Propagate to subsequent months
-  const subsequentFiles = await getSubsequentShiftFiles(year, month);
-  
   // Create a map of alias -> groupName from the new arrangement
   const aliasToGroupMap = new Map<string, string>();
   for (const group of tag_arrangement) {
@@ -34,7 +29,7 @@ export async function PUT(request: NextRequest) {
 
       // 1. Ensure all groups exist in subData
       const newGroupNames = new Set(tag_arrangement.map((g: any) => g.full_name));
-      
+
       // Add missing groups
       for (const groupName of Array.from(newGroupNames) as string[]) {
           if (!subData.tag_arrangement.find(g => g.full_name === groupName)) {
@@ -61,13 +56,13 @@ export async function PUT(request: NextRequest) {
           // If person found in subData
           if (currentGroupIndex !== -1) {
               const currentGroup = subData.tag_arrangement[currentGroupIndex];
-              
+
               // If they are in the wrong group
               if (currentGroup.full_name !== targetGroupName) {
                   // Remove from old group
                   const member = currentGroup.member[currentMemberIndex];
                   currentGroup.member.splice(currentMemberIndex, 1);
-                  
+
                   // Add to new group
                   const targetGroup = subData.tag_arrangement.find(g => g.full_name === targetGroupName);
                   if (targetGroup) {
@@ -88,7 +83,7 @@ export async function PUT(request: NextRequest) {
               }
           }
       }
-      
+
       if (changed) {
           await saveShiftData(file.year, file.month, subData);
       }

@@ -39,4 +39,6 @@ export interface ShiftMapping {
       isOnDuty: number;
     };
   };
+  tagGroups: TagArrangement[];
+  globalPeople: Member[];
 }

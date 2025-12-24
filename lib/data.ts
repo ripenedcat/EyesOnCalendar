@@ -1,16 +1,34 @@
 import { query } from './db';
-import { ShiftData, ShiftMapping, Person, Day } from '@/types';
+import { ShiftData, ShiftMapping, Person, Day, TagArrangement, Member } from '@/types';
 
 export async function getShiftMapping(): Promise<ShiftMapping> {
-  const rows = await query<{ day_types: any }>(
-    'SELECT day_types FROM shift_mapping ORDER BY id DESC LIMIT 1'
+  const rows = await query<{ day_types: ShiftMapping['dayTypes']; tag_groups: TagArrangement[]; global_people: Member[] }>(
+    'SELECT day_types, tag_groups, global_people FROM shift_mapping ORDER BY id DESC LIMIT 1'
   );
 
   if (rows.length === 0) {
     throw new Error('Shift mapping not found in database');
   }
 
-  return { dayTypes: rows[0].day_types };
+  return {
+    dayTypes: rows[0].day_types,
+    tagGroups: rows[0].tag_groups || [{ full_name: 'All', member: [] }],
+    globalPeople: rows[0].global_people || []
+  };
+}
+
+export async function saveTagGroups(tagGroups: TagArrangement[]): Promise<void> {
+  await query(
+    'UPDATE shift_mapping SET tag_groups = $1, updated_at = CURRENT_TIMESTAMP WHERE id = (SELECT id FROM shift_mapping ORDER BY id DESC LIMIT 1)',
+    [JSON.stringify(tagGroups)]
+  );
+}
+
+export async function saveGlobalPeople(people: Member[]): Promise<void> {
+  await query(
+    'UPDATE shift_mapping SET global_people = $1, updated_at = CURRENT_TIMESTAMP WHERE id = (SELECT id FROM shift_mapping ORDER BY id DESC LIMIT 1)',
+    [JSON.stringify(people)]
+  );
 }
 
 export async function getShiftData(year: number, month: number): Promise<ShiftData | null> {
@@ -19,8 +37,8 @@ export async function getShiftData(year: number, month: number): Promise<ShiftDa
     month: number;
     pod: string;
     lockdate: number[];
-    people: any;
-    tag_arrangement: any;
+    people: Person[];
+    tag_arrangement: TagArrangement[];
   }>(
     'SELECT year, month, pod, lockdate, people, tag_arrangement FROM shift_data WHERE year = $1 AND month = $2',
     [year, month]
@@ -44,23 +62,23 @@ export async function getShiftData(year: number, month: number): Promise<ShiftDa
     data.tag_arrangement = [];
   }
 
-  // Ensure Default group has all members
+  // Ensure All group has all members
   if (data.tag_arrangement) {
-    let defaultGroup = data.tag_arrangement.find(g => g.full_name === 'Default');
+    let allGroup = data.tag_arrangement.find(g => g.full_name === 'All');
 
-    if (!defaultGroup) {
-      defaultGroup = {
-        full_name: 'Default',
+    if (!allGroup) {
+      allGroup = {
+        full_name: 'All',
         member: []
       };
-      data.tag_arrangement.unshift(defaultGroup);
+      data.tag_arrangement.unshift(allGroup);
     }
 
-    const existingMemberAliases = new Set(defaultGroup.member.map(m => m.alias));
+    const existingMemberAliases = new Set(allGroup.member.map(m => m.alias));
 
     data.people.forEach(person => {
       if (!existingMemberAliases.has(person.alias)) {
-        defaultGroup!.member.push({
+        allGroup!.member.push({
           name: person.name,
           alias: person.alias
         });
@@ -95,22 +113,19 @@ export async function saveShiftData(year: number, month: number, data: ShiftData
 }
 
 export async function createShiftData(year: number, month: number): Promise<ShiftData> {
-  // Determine previous month
-  let prevYear = year;
-  let prevMonth = month - 1;
-  if (prevMonth === 0) {
-    prevMonth = 12;
-    prevYear = year - 1;
-  }
+  // Get global data
+  const shiftMapping = await getShiftMapping();
+  const globalPeople = shiftMapping.globalPeople;
+  const globalTagGroups = shiftMapping.tagGroups;
 
-  const prevData = await getShiftData(prevYear, prevMonth);
-  if (!prevData) {
-    throw new Error(`Previous month data (${prevYear}-${prevMonth}) not found. Cannot create new month.`);
+  if (globalPeople.length === 0) {
+    throw new Error('No people defined in global configuration. Please add members first.');
   }
 
   const daysInMonth = new Date(year, month, 0).getDate();
-  
-  const newPeople: Person[] = prevData.people.map(person => {
+
+  // Create people with days based on global people list
+  const newPeople: Person[] = globalPeople.map(member => {
     const newDays: Day[] = [];
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(year, month - 1, d);
@@ -121,17 +136,47 @@ export async function createShiftData(year: number, month: number): Promise<Shif
       });
     }
     return {
-      ...person,
+      alias: member.alias,
+      name: member.name,
       days: newDays
     };
   });
 
+  // Use global tag groups and populate members
+  const newTagArrangement: TagArrangement[] = globalTagGroups.map(group => {
+    if (group.full_name === 'All') {
+      // All group should contain all people
+      return {
+        full_name: 'All',
+        member: newPeople.map(p => ({ alias: p.alias, name: p.name }))
+      };
+    } else {
+      // For other groups, keep only members that still exist in global people
+      return {
+        full_name: group.full_name,
+        member: group.member.filter(m =>
+          globalPeople.some(p => p.alias === m.alias)
+        )
+      };
+    }
+  });
+
+  // Get pod from previous month if exists, otherwise use default
+  let pod = 'Default';
+  const prevYear = month === 1 ? year - 1 : year;
+  const prevMonth = month === 1 ? 12 : month - 1;
+  const prevData = await getShiftData(prevYear, prevMonth);
+  if (prevData) {
+    pod = prevData.pod;
+  }
+
   const newData: ShiftData = {
-    ...prevData,
     year,
     month,
-    lockdate: [], // Reset lockdate
-    people: newPeople
+    pod,
+    lockdate: [],
+    people: newPeople,
+    tag_arrangement: newTagArrangement
   };
 
   await saveShiftData(year, month, newData);
@@ -144,8 +189,8 @@ export async function getSubsequentShiftFiles(startYear: number, startMonth: num
     month: number;
     pod: string;
     lockdate: number[];
-    people: any;
-    tag_arrangement: any;
+    people: Person[];
+    tag_arrangement: TagArrangement[];
   }>(
     `SELECT year, month, pod, lockdate, people, tag_arrangement
      FROM shift_data

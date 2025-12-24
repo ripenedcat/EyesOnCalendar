@@ -2,21 +2,21 @@
 
 import React, { useEffect, useState } from 'react';
 import PeopleManager from '../components/PeopleManager';
-import { ShiftData, TagArrangement } from '@/types';
+import { Member, TagArrangement } from '@/types';
 import Link from 'next/link';
 
+interface ManagementData {
+  people: Member[];
+  groups: TagArrangement[];
+}
+
 export default function ManagementPage() {
-  const [shiftData, setShiftData] = useState<ShiftData | null>(null);
-  const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(12);
+  const [managementData, setManagementData] = useState<ManagementData | null>(null);
   const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
-    // For management, we might want to load the current month or allow selection.
-    // For simplicity, let's load the default 2025-12 or get from URL params if we were passing them.
-    // Here I'll just load 2025-12 as a default context for editing people/groups.
-    fetchShiftData(2025, 12);
+    fetchManagementData();
   }, []);
 
   const showNotification = (message: string, type: 'success' | 'error') => {
@@ -24,15 +24,13 @@ export default function ManagementPage() {
     setTimeout(() => setNotification(null), 3000);
   };
 
-  const fetchShiftData = async (y: number, m: number) => {
+  const fetchManagementData = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/shifts?year=${y}&month=${m}`);
+      const res = await fetch('/api/management');
       if (res.ok) {
         const data = await res.json();
-        setShiftData(data);
-        setYear(y);
-        setMonth(m);
+        setManagementData(data);
       }
     } catch (err) {
       console.error(err);
@@ -42,32 +40,19 @@ export default function ManagementPage() {
   };
 
   const handleAddUser = async (alias: string, name: string) => {
-    if (!shiftData) return;
+    if (!managementData) return;
 
-    const daysInMonth = new Date(year, month, 0).getDate();
-    const newDays = [];
-    for (let d = 1; d <= daysInMonth; d++) {
-        const date = new Date(year, month - 1, d);
-        const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-        newDays.push({ day: d, workType: isWeekend ? 'WD' : 'W' });
-    }
-
-    const newUser = { alias, name, days: newDays };
-    const newData = { ...shiftData, people: [...shiftData.people, newUser] };
+    const newUser = { alias, name };
+    const newData = { ...managementData, people: [...managementData.people, newUser] };
 
     // Optimistic update
-    setShiftData(newData);
+    setManagementData(newData);
 
     try {
       const res = await fetch('/api/people', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          year: shiftData.year,
-          month: shiftData.month,
-          alias,
-          name
-        }),
+        body: JSON.stringify({ alias, name }),
       });
 
       if (res.ok) {
@@ -75,37 +60,33 @@ export default function ManagementPage() {
       } else {
         const errorData = await res.json();
         showNotification(errorData.error || 'Failed to add user', 'error');
-        fetchShiftData(year, month);
+        fetchManagementData();
       }
     } catch (err) {
       showNotification('Network error while adding user', 'error');
-      fetchShiftData(year, month);
+      fetchManagementData();
     }
   };
 
   const handleDeleteUser = async (alias: string) => {
-    if (!shiftData) return;
+    if (!managementData) return;
 
     // Optimistic update
     const newData = {
-      ...shiftData,
-      people: shiftData.people.filter(p => p.alias !== alias),
-      tag_arrangement: shiftData.tag_arrangement.map(g => ({
+      ...managementData,
+      people: managementData.people.filter(p => p.alias !== alias),
+      groups: managementData.groups.map(g => ({
         ...g,
         member: g.member.filter(m => m.alias !== alias)
       }))
     };
-    setShiftData(newData);
+    setManagementData(newData);
 
     try {
       const res = await fetch('/api/people', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          year: shiftData.year,
-          month: shiftData.month,
-          alias
-        }),
+        body: JSON.stringify({ alias }),
       });
 
       if (res.ok) {
@@ -113,30 +94,26 @@ export default function ManagementPage() {
       } else {
         const errorData = await res.json();
         showNotification(errorData.error || 'Failed to delete user', 'error');
-        fetchShiftData(year, month);
+        fetchManagementData();
       }
     } catch (err) {
       showNotification('Network error while deleting user', 'error');
-      fetchShiftData(year, month);
+      fetchManagementData();
     }
   };
 
   const handleUpdateGroups = async (newGroups: TagArrangement[]) => {
-    if (!shiftData) return;
-    const newData = { ...shiftData, tag_arrangement: newGroups };
-    
+    if (!managementData) return;
+    const newData = { ...managementData, groups: newGroups };
+
     // Optimistic update
-    setShiftData(newData);
+    setManagementData(newData);
 
     try {
       const res = await fetch('/api/groups', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          year: shiftData.year,
-          month: shiftData.month,
-          tag_arrangement: newGroups
-        }),
+        body: JSON.stringify({ tag_arrangement: newGroups }),
       });
 
       if (res.ok) {
@@ -144,11 +121,11 @@ export default function ManagementPage() {
       } else {
         const errorData = await res.json();
         showNotification(errorData.error || 'Failed to update groups', 'error');
-        fetchShiftData(year, month);
+        fetchManagementData();
       }
     } catch (err) {
       showNotification('Network error while updating groups', 'error');
-      fetchShiftData(year, month);
+      fetchManagementData();
     }
   };
 
@@ -172,9 +149,12 @@ export default function ManagementPage() {
 
       {loading && <div>Loading...</div>}
 
-      {shiftData && (
+      {managementData && (
         <PeopleManager
-          data={shiftData}
+          data={{
+            people: managementData.people.map(p => ({ ...p, days: [] })),
+            tag_arrangement: managementData.groups
+          }}
           onAddUser={handleAddUser}
           onDeleteUser={handleDeleteUser}
           onUpdateGroups={handleUpdateGroups}

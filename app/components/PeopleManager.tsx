@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ShiftData, TagArrangement, Person } from '@/types';
+import { TagArrangement, Person } from '@/types';
 
 interface PeopleManagerProps {
-  data: ShiftData;
+  data: {
+    people: Person[];
+    tag_arrangement: TagArrangement[];
+  };
   onAddUser: (alias: string, name: string) => void;
   onDeleteUser: (alias: string) => void;
   onUpdateGroups: (groups: TagArrangement[]) => void;
@@ -38,9 +41,9 @@ export default function PeopleManager({ data, onAddUser, onDeleteUser, onUpdateG
   const handleDeleteGroup = (groupIndex: number) => {
     const group = data.tag_arrangement[groupIndex];
 
-    // Prevent deleting Default group
-    if (group.full_name === 'Default') {
-      alert('Cannot delete the Default group');
+    // Prevent deleting All group
+    if (group.full_name === 'All') {
+      alert('Cannot delete the All group');
       return;
     }
 
@@ -165,17 +168,17 @@ export default function PeopleManager({ data, onAddUser, onDeleteUser, onUpdateG
                   </span>
                   <button
                     onClick={() => {
-                      if (group.full_name === 'Default') {
-                        alert('Cannot delete the Default group');
+                      if (group.full_name === 'All') {
+                        alert('Cannot delete the All group');
                         return;
                       }
                       if (confirm(`Are you sure you want to delete the group "${group.full_name}"? Members will not be deleted, only the group.`)) {
                         handleDeleteGroup(index);
                       }
                     }}
-                    disabled={group.full_name === 'Default'}
+                    disabled={group.full_name === 'All'}
                     className={`px-3 py-1 rounded text-sm ${
-                      group.full_name === 'Default'
+                      group.full_name === 'All'
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         : 'bg-red-500 text-white hover:bg-red-600'
                     }`}
